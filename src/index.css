@@ -1,0 +1,233 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, Cantarell, Ubuntu, roboto, noto, helvetica, arial,
+    sans-serif;
+  background: url(/grass.jpg);
+  padding-bottom: 100px;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  color: #fff;
+  text-shadow: 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.main {
+  max-width: 1200px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.players {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-auto-rows: min-content;
+  gap: 1rem;
+}
+
+img {
+  border-radius: 0.125rem;
+  max-width: 100%;
+}
+.puppy {
+  background: #fdedd3;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.03), 0px 1px 1px rgba(3, 7, 18, 0.03),
+    0px 2px 2px rgba(3, 7, 18, 0.02), 0px 3px 3px rgba(3, 7, 18, 0.02),
+    0px 5px 5px rgba(3, 7, 18, 0.02), 0px 7px 7px rgba(3, 7, 18, 0.01),
+    0px 10px 10px rgba(3, 7, 18, 0.01), 0px 13px 13px rgba(3, 7, 18, 0.01),
+    0px 16px 16px rgba(3, 7, 18, 0);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content auto max-content max-content;
+  gap: 0.5rem 0;
+}
+.puppy__breed {
+  font-size: 0.75rem;
+  text-wrap: balance;
+}
+.puppy__status {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.puppy__name {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+form {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+@media (min-width: 1086px) {
+  .form-group__image {
+    grid-column: span 2;
+  }
+}
+
+form {
+  display: grid;
+  gap: 0.5rem;
+
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  background: #fad7a0;
+  box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.03), 0px 1px 1px rgba(3, 7, 18, 0.03),
+    0px 2px 2px rgba(3, 7, 18, 0.02), 0px 3px 3px rgba(3, 7, 18, 0.02),
+    0px 5px 5px rgba(3, 7, 18, 0.02), 0px 7px 7px rgba(3, 7, 18, 0.01),
+    0px 10px 10px rgba(3, 7, 18, 0.01), 0px 13px 13px rgba(3, 7, 18, 0.01),
+    0px 16px 16px rgba(3, 7, 18, 0);
+  align-items: end;
+}
+
+form h5 {
+  grid-column: -1 / 1;
+  text-transform: uppercase;
+}
+form input[type="url"],
+form input[type="text"] {
+  width: 100%;
+  height: 28px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  border-radius: 0.125rem;
+  appearance: none;
+  border-width: 1px;
+}
+form label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+form select {
+  width: 100%;
+  height: 28px;
+  border-radius: 0.125rem;
+}
+
+.puppy__actions {
+  padding-top: 0.25rem;
+  display: flex;
+}
+
+.btn {
+  background: none;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: #fff;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  box-shadow: 0 0 0 1px #999 inset;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+form .btn {
+  height: 28px;
+}
+
+.btn:hover {
+  background: #666;
+  color: #fff;
+  box-shadow: none;
+}
+.btn--remove {
+  margin-left: auto;
+  color: red;
+  background: transparent;
+  box-shadow: none;
+}
+.btn--remove:hover {
+  background: red;
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fdedd3;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.puppy-details {
+  display: grid;
+  gap: 1rem;
+}
+
+.puppy-details__img {
+  text-align: center;
+}
+
+.puppy-details__img img {
+  max-height: 300px;
+  width: auto;
+  margin: 0 auto;
+}
+
+.puppy-details__info {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.puppy-details__name {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.puppy-details__field {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.5rem;
+}
+
+.puppy-details__label {
+  font-weight: 600;
+}
