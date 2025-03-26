@@ -8,11 +8,24 @@ const AllPlayers = () => {
   const [players, setPlayers] = useState([]);
   const [filteredPlayers, setFilteredPlayers] = useState([]);
 
+  const secureImageUrl = (url) => {
+    if (!url) return url;
+    return url.replace("http://", "https://");
+  };
+
   const fetchPlayers = async () => {
-    const response = await FetchAllPlayers();
-    console.log("Fetched players:", response);
-    setPlayers(response);
-    setFilteredPlayers(response);
+    try {
+      const response = await FetchAllPlayers();
+      // Convert all image URLs to HTTPS
+      const securePlayers = response.map((player) => ({
+        ...player,
+        imageUrl: secureImageUrl(player.imageUrl),
+      }));
+      setPlayers(securePlayers);
+      setFilteredPlayers(securePlayers);
+    } catch (error) {
+      // Handle error silently in production
+    }
   };
 
   useEffect(() => {
@@ -27,8 +40,12 @@ const AllPlayers = () => {
   };
 
   const handleRemove = async (id) => {
-    await RemovePlayer(id);
-    fetchPlayers();
+    try {
+      await RemovePlayer(id);
+      fetchPlayers();
+    } catch (error) {
+      // Handle error silently in production
+    }
   };
 
   return (

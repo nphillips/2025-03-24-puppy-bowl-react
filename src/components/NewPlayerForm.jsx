@@ -11,9 +11,13 @@ const NewPlayerForm = ({ onPlayerCreated }) => {
       imageUrl: formData.get("puppy-image") || "https://placedog.net/310x465",
     };
 
-    await CreatePlayer(playerData);
-    onPlayerCreated();
-    e.target.reset();
+    try {
+      await CreatePlayer(playerData);
+      onPlayerCreated();
+      e.target.reset();
+    } catch (error) {
+      // Handle error silently in production
+    }
   };
 
   return (
@@ -51,7 +55,8 @@ const NewPlayerForm = ({ onPlayerCreated }) => {
             type="url"
             name="puppy-image"
             id="puppy-image"
-            placeholder="Enter image URL"
+            placeholder="Enter image URL (must be HTTPS)"
+            pattern="https://.*"
           />
         </div>
         <div>

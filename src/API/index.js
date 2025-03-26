@@ -4,10 +4,12 @@ const BASE_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${COHORT}-PUPPIES`;
 export const FetchAllPlayers = async () => {
   try {
     const response = await fetch(`${BASE_URL}/players`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
     const result = await response.json();
     return result.data.players;
   } catch (error) {
-    console.error("Error fetching players:", error);
     return [];
   }
 };
@@ -15,10 +17,12 @@ export const FetchAllPlayers = async () => {
 export const FetchSinglePlayer = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/players/${id}`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
     const result = await response.json();
     return result.data.player;
   } catch (error) {
-    console.error("Error fetching player:", error);
     return null;
   }
 };
@@ -32,10 +36,12 @@ export const CreatePlayer = async (player) => {
       },
       body: JSON.stringify(player),
     });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
     const result = await response.json();
     return result.data.player;
   } catch (error) {
-    console.error("Error creating player:", error);
     return null;
   }
 };
@@ -45,10 +51,12 @@ export const RemovePlayer = async (id) => {
     const response = await fetch(`${BASE_URL}/players/${id}`, {
       method: "DELETE",
     });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
     const result = await response.json();
     return result.data.player;
   } catch (error) {
-    console.error("Error removing player:", error);
     return null;
   }
 };

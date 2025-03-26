@@ -7,10 +7,24 @@ const SinglePlayer = () => {
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
 
+  const secureImageUrl = (url) => {
+    if (!url) return url;
+    return url.replace("http://", "https://");
+  };
+
   useEffect(() => {
     const fetchPlayer = async () => {
-      const player = await FetchSinglePlayer(id);
-      setPlayer(player);
+      try {
+        const player = await FetchSinglePlayer(id);
+        if (player) {
+          setPlayer({
+            ...player,
+            imageUrl: secureImageUrl(player.imageUrl),
+          });
+        }
+      } catch (error) {
+        // Handle error silently in production
+      }
     };
     fetchPlayer();
   }, [id]);
