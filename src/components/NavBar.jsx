@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ currentPuppy }) => {
   return (
     <>
-      <h1> 🐶 Puppy Bowl!</h1>
       <nav>
         <Link to="/">Home</Link>
+        {currentPuppy && (
+          <Link to={`/players/${currentPuppy.id}`} className="current-player">
+            {currentPuppy.name}
+          </Link>
+        )}
       </nav>
     </>
   );

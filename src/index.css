@@ -3,6 +3,10 @@
   margin: 0;
   box-sizing: border-box;
 }
+:root {
+  --puppy-bg: #fdedd3;
+  --toolbar-bg: #fad7a0;
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
     helvetica neue, Cantarell, Ubuntu, roboto, noto, helvetica, arial,
@@ -37,7 +41,7 @@ img {
   max-width: 100%;
 }
 .puppy {
-  background: #fdedd3;
+  background: var(--puppy-bg);
   padding: 0.75rem;
   border-radius: 0.25rem;
   box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.03), 0px 1px 1px rgba(3, 7, 18, 0.03),
@@ -75,15 +79,6 @@ form {
   display: grid;
   gap: 0.5rem;
 
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
-  background: #fad7a0;
-  box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.03), 0px 1px 1px rgba(3, 7, 18, 0.03),
-    0px 2px 2px rgba(3, 7, 18, 0.02), 0px 3px 3px rgba(3, 7, 18, 0.02),
-    0px 5px 5px rgba(3, 7, 18, 0.02), 0px 7px 7px rgba(3, 7, 18, 0.01),
-    0px 10px 10px rgba(3, 7, 18, 0.01), 0px 13px 13px rgba(3, 7, 18, 0.01),
-    0px 16px 16px rgba(3, 7, 18, 0);
   align-items: end;
 }
 
@@ -91,8 +86,8 @@ form h5 {
   grid-column: -1 / 1;
   text-transform: uppercase;
 }
-form input[type="url"],
-form input[type="text"] {
+.toolbar input[type="url"],
+.toolbar input[type="text"] {
   width: 100%;
   height: 28px;
   padding-left: 0.25rem;
@@ -136,7 +131,7 @@ form select {
   font-weight: 500;
   cursor: pointer;
 }
-form .btn {
+.toolbar .btn {
   height: 28px;
 }
 
@@ -200,6 +195,10 @@ form .btn {
 .puppy-details {
   display: grid;
   gap: 1rem;
+  background: var(--puppy-bg);
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 1px #999 inset;
 }
 
 .puppy-details__img {
@@ -218,7 +217,7 @@ form .btn {
 }
 
 .puppy-details__name {
-  font-size: 1.75rem;
+  font-size: 4rem;
   font-weight: 600;
 }
 
@@ -230,4 +229,63 @@ form .btn {
 
 .puppy-details__label {
   font-weight: 600;
+}
+
+.current-player {
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+}
+.current-player::before {
+  content: " › ";
+}
+
+.toolbar {
+}
+
+.toolbar__tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.toolbar__icon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.toolbar__tab {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  background: var(--puppy-bg);
+  border-radius: 0.25rem 0.25rem 0 0;
+  box-shadow: 0 1px 0 #ccc;
+}
+
+.toolbar__tab.active {
+  background: var(--toolbar-bg);
+  box-shadow: none;
+  font-weight: 600;
+}
+
+.toolbar__content {
+  padding: 0.75rem;
+  border-radius: 0 0.25rem 0.25rem 0.25rem;
+  margin-bottom: 1rem;
+  background: var(--toolbar-bg);
+
+  box-shadow: 0px 0px 0px rgba(3, 7, 18, 0.03), 0px 1px 1px rgba(3, 7, 18, 0.03),
+    0px 2px 2px rgba(3, 7, 18, 0.02), 0px 3px 3px rgba(3, 7, 18, 0.02),
+    0px 5px 5px rgba(3, 7, 18, 0.02), 0px 7px 7px rgba(3, 7, 18, 0.01),
+    0px 10px 10px rgba(3, 7, 18, 0.01), 0px 13px 13px rgba(3, 7, 18, 0.01),
+    0px 16px 16px rgba(3, 7, 18, 0);
+}
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 400px;
 }
